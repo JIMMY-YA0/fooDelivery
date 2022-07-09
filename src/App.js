@@ -76,7 +76,6 @@ function App() {
    */
   const [cartData, setCartData] = useState({
     items: [],
-    amount: 0,
     totalAmount: 0,
     totalPrice: 0,
   });
@@ -117,13 +116,24 @@ function App() {
     setCartData(newCart);
   };
 
+  const clearCart = () => {
+    const newCart = { ...cartData };
+    newCart.items.forEach((item) => {
+      delete item.amount;
+    });
+    newCart.items = [];
+    newCart.totalAmount = 0;
+    newCart.totalPrice = 0;
+    setCartData(newCart);
+  };
+
   const search = (keyword) => {
     const searchResult = MEALS_DATA.filter((item) => item.title.match(keyword));
     setMealsData(searchResult);
   };
 
   return (
-    <CartContext.Provider value={{ ...cartData, addItems, removeItems }}>
+    <CartContext.Provider value={{ ...cartData, addItems, removeItems, clearCart }}>
       <div>
         <FilterMeals search={search} />
         <Meals mealsData={mealsData} />

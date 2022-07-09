@@ -5,7 +5,7 @@
   align-items: center;
   width: 680rem;
   height: 80rem;
-  bottom: 60rem;
+  bottom: 30rem;
   outline: none;
   left: 0;
   right: 0;
@@ -63,10 +63,14 @@
 .CheckoutButton,
 .Disable {
   border: none;
-  border-radius: 40rem;
+  border-top-right-radius: 40rem;
+  border-bottom-right-radius: 40rem;
+  width: 180rem;
   height: inherit;
-  background-color: rgb(28, 202, 66);
+  background-color: #fcbf49;
   right: 0;
+  font-size: 24rem;
+  font-weight: bold;
 }
 
 .Disable {

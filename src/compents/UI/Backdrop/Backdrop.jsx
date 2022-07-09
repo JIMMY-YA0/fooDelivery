@@ -16,11 +16,11 @@ import React from "react";
 import classes from "./Backdrop.module.css";
 import ReactDOM from "react-dom";
 
-const backdropRoot = document.getElementById("backdrop-root");
+const backdropRoot = document.getElementById("backdropRoot");
 
 const Backdrop = (props) => {
   return ReactDOM.createPortal(
-    <div className={`${classes.Backdrop} ${props.className}`}>{props.children}</div>,
+    <div {...props} className={`${classes.Backdrop} ${props.className}`}>{props.children}</div>,
     backdropRoot
   );
 };

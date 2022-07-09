@@ -1,12 +1,38 @@
 .CartDetails {
-  background-color: #fff;
   display: flex;
+  flex-flow: column;
+  background-color: #fff;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  max-height: 1000rem;
+  padding-bottom: 130rem;
+  border-top-left-radius: 20rem;
+  border-top-right-radius: 20rem;
 }
 
-/* .Title {
+.Header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rem;
+  align-items: center;
+}
+
+.Title {
   font-size: 28rem;
+  margin: 0;
+  font-weight: bold;
 }
 
 .Clear {
+  color: #aaa;
   font-size: 28rem;
-} */
+}
+
+.Clear span {
+  margin-left: 10rem;
+}
+
+.MealList {
+  overflow: auto;
+}

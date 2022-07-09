@@ -2,12 +2,17 @@
   display: flex;
   align-items: center;
   padding: 30rem 20rem;
-  border-bottom: 1px #f2f2f2 solid;
+  border-bottom: 1rem #f2f2f2 solid;
 }
 
 .ImgBox {
   width: 280rem;
   margin-right: 30rem;
+}
+
+.DescBox {
+  flex: auto;
+  width: 100%;
 }
 
 img {
