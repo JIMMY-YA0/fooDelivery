@@ -21,8 +21,7 @@ const CartDetails = () => {
     setShowConfirm(false);
   };
   const resetCart = () => {
-    ctx.clearCart();
-    // setShowConfirm(false);
+    ctx.cartDataDispatch({ type: "CLEAR" });
   };
 
   return (

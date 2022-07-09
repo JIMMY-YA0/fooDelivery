@@ -8,11 +8,11 @@ import CartContext from "../../../store/cart-context";
 const Counter = (props) => {
   const ctx = useContext(CartContext);
   const addButtonHandler = () => {
-    ctx.addItems(props.meal);
+    ctx.cartDataDispatch({ type: "ADD", meal: props.meal });
   };
 
   const SubButtonHandler = () => {
-    ctx.removeItems(props.meal);
+    ctx.cartDataDispatch({ type: "SUB", meal: props.meal });
   };
 
   return (

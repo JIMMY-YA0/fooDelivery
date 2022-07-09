@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Counter from "../../UI/Counter/Counter";
 import classes from "./CheckoutItem.module.css";
 

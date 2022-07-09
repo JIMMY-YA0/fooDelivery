@@ -13,6 +13,7 @@ const FilterMeals = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       props.search(keyword);
+      console.log("triggle");
     }, 1000);
     return () => {
       clearTimeout(timer);

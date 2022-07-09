@@ -33,7 +33,7 @@ const Cart = () => {
       {showCheckOut && <Checkout onHide={toggleCheckOutHandler} />}
       {showDetails && <CartDetails />}
       <div className={classes.Icon}>
-        <img src={iconImg} />
+        <img src={iconImg} alt="" />
         {cartCtx.totalAmount === 0 ? null : (
           <span className={classes.TotalAmount}>{cartCtx.totalAmount}</span>
         )}

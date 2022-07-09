@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useReducer } from "react";
 import Meals from "./compents/Meals/Meals";
 import { useState } from "react";
 import CartContext from "./store/cart-context";
@@ -65,6 +65,45 @@ const MEALS_DATA = [
   },
 ];
 
+const cartReducer = (state, action) => {
+  const newCart = { ...state };
+  switch (action.type) {
+    default:
+      return state;
+    case "ADD":
+      if (newCart.items.indexOf(action.meal) === -1) {
+        newCart.items.push(action.meal);
+        action.meal.amount = 1;
+      } else {
+        // modify item's number
+        action.meal.amount += 1;
+      }
+
+      // update totalAmount
+      newCart.totalAmount += 1;
+      // update totalPrice
+      newCart.totalPrice += action.meal.price;
+
+      return newCart;
+    case "SUB":
+      action.meal.amount -= 1;
+      if (action.meal.amount === 0) {
+        newCart.items.splice(newCart.items.indexOf(action.meal), 1);
+      }
+      newCart.totalAmount -= 1;
+      newCart.totalPrice -= action.meal.price;
+      return newCart;
+    case "CLEAR":
+      newCart.items.forEach((item) => {
+        delete item.amount;
+      });
+      newCart.items = [];
+      newCart.totalAmount = 0;
+      newCart.totalPrice = 0;
+      return newCart;
+  }
+};
+
 function App() {
   // store burger list
   const [mealsData, setMealsData] = useState(MEALS_DATA);
@@ -74,58 +113,11 @@ function App() {
     2.totalAmount : number
     3.totalPrice: number 
    */
-  const [cartData, setCartData] = useState({
+  const [cartData, cartDataDispatch] = useReducer(cartReducer, {
     items: [],
     totalAmount: 0,
     totalPrice: 0,
   });
-
-  //add item to cart
-  const addItems = (meal) => {
-    // shadowcopy current cart
-    const newCart = { ...cartData };
-
-    //if the cart stored the items，if no add items into cart
-    if (newCart.items.indexOf(meal) === -1) {
-      newCart.items.push(meal);
-      meal.amount = 1;
-    } else {
-      // modify item's number
-      meal.amount += 1;
-    }
-
-    // update totalAmount
-    newCart.totalAmount += 1;
-    // update totalPrice
-    newCart.totalPrice += meal.price;
-
-    setCartData(newCart);
-  };
-
-  const removeItems = (meal) => {
-    const newCart = { ...cartData };
-
-    meal.amount -= 1;
-
-    if (meal.amount === 0) {
-      newCart.items.splice(newCart.items.indexOf(meal), 1);
-    }
-    newCart.totalAmount -= 1;
-    newCart.totalPrice -= meal.price;
-
-    setCartData(newCart);
-  };
-
-  const clearCart = () => {
-    const newCart = { ...cartData };
-    newCart.items.forEach((item) => {
-      delete item.amount;
-    });
-    newCart.items = [];
-    newCart.totalAmount = 0;
-    newCart.totalPrice = 0;
-    setCartData(newCart);
-  };
 
   const search = (keyword) => {
     const searchResult = MEALS_DATA.filter((item) => item.title.match(keyword));
@@ -133,7 +125,7 @@ function App() {
   };
 
   return (
-    <CartContext.Provider value={{ ...cartData, addItems, removeItems, clearCart }}>
+    <CartContext.Provider value={{ ...cartData, cartDataDispatch }}>
       <div>
         <FilterMeals search={search} />
         <Meals mealsData={mealsData} />
