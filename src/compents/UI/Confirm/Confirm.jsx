@@ -11,7 +11,7 @@ const Confirm = (props) => {
           <button className={classes.Cancel} onClick={(e) => props.onCancel(e)}>
             Cancel
           </button>
-          <button className={classes.Reset} onClick={(e) => props.onReset(e)}>
+          <button className={classes.Reset} onClick={() => props.onReset()}>
             Reset
           </button>
         </div>

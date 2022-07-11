@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../../../store/cartSlice";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import classes from "../CartDetails/CartDetails.module.css";
-import CartContext from "../../../store/cart-context";
 import Meal from "../../Meals/Meal/Meal";
 import Confirm from "../../UI/Confirm/Confirm";
 
 const CartDetails = () => {
-  const ctx = useContext(CartContext);
-
+  const { cart } = useSelector((state) => state);
+  const dispatch = useDispatch();
   // show confirm box
   const [showConfirm, setShowConfirm] = useState(false);
   const showConfirmBox = () => {
@@ -21,7 +22,8 @@ const CartDetails = () => {
     setShowConfirm(false);
   };
   const resetCart = () => {
-    ctx.cartDataDispatch({ type: "CLEAR" });
+    // e.stopPropagation();
+    dispatch(clearCart());
   };
 
   return (
@@ -43,9 +45,12 @@ const CartDetails = () => {
           </div>
         </header>
         <div className={classes.MealList}>
-          {ctx.items.map((item) => (
-            <Meal noDesc key={item.id} meal={item} />
-          ))}
+          {cart.items.map((item) => {
+            if (item.amount > 0) {
+              return <Meal noDesc key={item.id} meal={item} />;
+            }
+            return null;
+          })}
         </div>
       </div>
     </Backdrop>

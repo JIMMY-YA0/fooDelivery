@@ -1,23 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import classes from "./Cart.module.css";
 import iconImg from "../../asset/bag.png";
-import CartContext from "../../store/cart-context";
 import CartDetails from "./CartDetails/CartDetails";
 import Checkout from "../Checkout/Checkout";
 const Cart = () => {
-  const cartCtx = useContext(CartContext);
   const [showDetails, setShowDetails] = useState(false);
   const [showCheckOut, setShowCheckOut] = useState(false);
 
+  const { cart } = useSelector((state) => state);
+
   useEffect(() => {
-    if (cartCtx.totalAmount === 0) {
+    if (cart.totalAmount === 0) {
       setShowDetails(false);
       setShowCheckOut(false);
     }
-  }, [cartCtx]);
+  }, [cart]);
 
   const toggleDetailsHandler = () => {
-    if (cartCtx.totalAmount === 0) {
+    if (cart.totalAmount === 0) {
       setShowDetails(false);
       return;
     }
@@ -25,7 +26,7 @@ const Cart = () => {
   };
 
   const toggleCheckOutHandler = () => {
-    if (cartCtx.totalAmount === 0) return;
+    if (cart.totalAmount === 0) return;
     setShowCheckOut((prevState) => !prevState);
   };
   return (
@@ -34,19 +35,19 @@ const Cart = () => {
       {showDetails && <CartDetails />}
       <div className={classes.Icon}>
         <img src={iconImg} alt="" />
-        {cartCtx.totalAmount === 0 ? null : (
-          <span className={classes.TotalAmount}>{cartCtx.totalAmount}</span>
+        {cart.totalAmount === 0 ? null : (
+          <span className={classes.TotalAmount}>{cart.totalAmount}</span>
         )}
       </div>
-      {cartCtx.totalAmount === 0 ? (
+      {cart.totalAmount === 0 ? (
         <p className={classes.EmptyCart}>There are no items in your cart.</p>
       ) : (
-        <p className={classes.Price}>{cartCtx.totalPrice}</p>
+        <p className={classes.Price}>{cart.totalPrice}</p>
       )}
 
       <button
         onClick={toggleCheckOutHandler}
-        className={`${cartCtx.totalAmount === 0 ? classes.Disable : classes.CheckoutButton}`}
+        className={`${cart.totalAmount === 0 ? classes.Disable : classes.CheckoutButton}`}
       >
         Check Out
       </button>
