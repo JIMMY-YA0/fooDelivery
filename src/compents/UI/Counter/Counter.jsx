@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increase, subtract } from "../../../store/cartSlice";
+import cartSlice, { increase, subtract } from "../../../store/cartSlice";
 import classes from "./Counter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +16,7 @@ const Counter = (props) => {
           <button
             className={classes.Sub}
             onClick={() => {
-              dispatch(subtract(props.meal.id));
+              dispatch(subtract(props.meal));
             }}
           >
             <FontAwesomeIcon icon={faMinus} />
@@ -27,7 +27,8 @@ const Counter = (props) => {
       <button
         className={classes.Add}
         onClick={() => {
-          dispatch(increase(props.meal.id));
+          console.log(props.meal);
+          dispatch(increase(props.meal));
         }}
       >
         <FontAwesomeIcon icon={faPlus} />

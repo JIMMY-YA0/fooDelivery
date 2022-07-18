@@ -10,6 +10,7 @@ import Confirm from "../../UI/Confirm/Confirm";
 
 const CartDetails = () => {
   const { cart } = useSelector((state) => state);
+  console.log("cart", cart);
   const dispatch = useDispatch();
   // show confirm box
   const [showConfirm, setShowConfirm] = useState(false);

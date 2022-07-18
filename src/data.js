@@ -13,7 +13,7 @@ export const MEALS_DATA = [
     desc: "Roadhouse Whopper contains Gluten, Eggs, Milk & milk products, Soy, Fish & crustacea, peanuts, Sesame.",
     price: 12,
     img: Img1,
-    amount: 0,
+    // amount: 0,
   },
   {
     id: "2",
@@ -21,7 +21,7 @@ export const MEALS_DATA = [
     desc: "Roadhouse Whopper contains Gluten, Eggs, Milk & milk products, Soy, Fish & crustacea, peanuts, Sesame.",
     price: 20,
     img: Img2,
-    amount: 0,
+    // amount: 0,
   },
   {
     id: "3",
@@ -29,7 +29,7 @@ export const MEALS_DATA = [
     desc: "Roadhouse Whopper contains Gluten, Eggs, Milk & milk products, Soy, Fish & crustacea, peanuts, Sesame.",
     price: 24,
     img: Img3,
-    amount: 0,
+    // amount: 0,
   },
   {
     id: "4",
@@ -37,7 +37,7 @@ export const MEALS_DATA = [
     desc: "Roadhouse Whopper contains Gluten, Eggs, Milk & milk products, Soy, Fish & crustacea, peanuts, Sesame.",
     price: 21,
     img: Img4,
-    amount: 0,
+    // amount: 0,
   },
   {
     id: "5",
@@ -45,7 +45,7 @@ export const MEALS_DATA = [
     desc: "Roadhouse Whopper contains Gluten, Eggs, Milk & milk products, Soy, Fish & crustacea, peanuts, Sesame.",
     price: 22,
     img: Img5,
-    amount: 0,
+    // amount: 0,
   },
   {
     id: "6",
@@ -53,7 +53,7 @@ export const MEALS_DATA = [
     desc: "Roadhouse Whopper contains Gluten, Eggs, Milk & milk products, Soy, Fish & crustacea, peanuts, Sesame.",
     price: 14,
     img: Img6,
-    amount: 0,
+    // amount: 0,
   },
   {
     id: "7",
@@ -61,6 +61,6 @@ export const MEALS_DATA = [
     desc: "Roadhouse Whopper contains Gluten, Eggs, Milk & milk products, Soy, Fish & crustacea, peanuts, Sesame.",
     price: 12,
     img: Img7,
-    amount: 0,
+    // amount: 0,
   },
 ];

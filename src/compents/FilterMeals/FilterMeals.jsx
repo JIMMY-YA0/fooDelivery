@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { searchItem, resetSearch } from "../../store/searchSlice";
 import classes from "./FilterMeals.module.css";
 
 const FilterMeals = (props) => {
   const [keyword, setKeyword] = useState("");
+  const { search } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const inputChangeHandler = (e) => {
     setKeyword(e.target.value.trim());
@@ -12,8 +16,12 @@ const FilterMeals = (props) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      props.search(keyword);
-      console.log("triggle");
+      if (keyword !== "") {
+        console.log(keyword);
+        dispatch(searchItem(keyword));
+      } else {
+        dispatch(resetSearch());
+      }
     }, 1000);
     return () => {
       clearTimeout(timer);
