@@ -5,15 +5,19 @@ const Meal = (props) => {
   return (
     <div className={classes.Meal}>
       <div className={classes.ImgBox}>
-        <img src={props.meal.img} alt={props.meal.title} />
+        {/* {console.log("url->", props.meal.img.data.attributes.url)} */}
+        <img
+          src={props.meal.attributes.img.data.attributes.url}
+          alt={props.meal.attributes.title}
+        />
       </div>
       <div className={classes.DescBox}>
-        <h2 className={classes.Title}>{props.meal.title}</h2>
+        <h2 className={classes.Title}>{props.meal.attributes.title}</h2>
         {/* Remove description from cartDetail */}
-        {props.noDesc ? "" : <p className={classes.Desc}>{props.meal.desc}</p>}
+        {props.noDesc ? "" : <p className={classes.Desc}>{props.meal.attributes.desc}</p>}
 
         <div className={classes.PriceWrap}>
-          <span className={classes.Price}>{props.meal.price}</span>
+          <span className={classes.Price}>{props.meal.attributes.price}</span>
           <Counter meal={props.meal} />
         </div>
       </div>

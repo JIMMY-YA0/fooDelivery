@@ -1,9 +1,9 @@
 import React from "react";
-import Meals from "./compents/Meals/Meals";
+import Meals from "./components/Meals/Meals";
 // import { useState } from "react";
 
-import FilterMeals from "./compents/FilterMeals/FilterMeals";
-import Cart from "./compents/Cart/Cart";
+import FilterMeals from "./components/FilterMeals/FilterMeals";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   // store burger list

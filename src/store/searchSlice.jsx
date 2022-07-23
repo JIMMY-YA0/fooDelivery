@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { MEALS_DATA } from "../data";
+
+// const { data: productsData, isSuccess } = productApi.useGetProductsQuery();
 
 const searchSlice = createSlice({
   name: "search",
   initialState: {
-    items: MEALS_DATA,
     searchResult: [],
   },
   reducers: {
     searchItem(state, action) {
-      state.searchResult = state.items.filter((item) =>
-        item.title.toLowerCase().includes(action.payload.toLowerCase())
+      const { productsData, keyword } = action.payload;
+      state.searchResult = productsData.filter((item) =>
+        item.attributes.title.toLowerCase().includes(keyword.toLowerCase())
       );
     },
     resetSearch(state) {

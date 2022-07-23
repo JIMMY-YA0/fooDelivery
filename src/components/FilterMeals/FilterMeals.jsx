@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchItem, resetSearch } from "../../store/searchSlice";
+import { useGetProductsQuery } from "../../store/API/productApi";
 import classes from "./FilterMeals.module.css";
 
 const FilterMeals = (props) => {
   const [keyword, setKeyword] = useState("");
-  const { search } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   const inputChangeHandler = (e) => {
     setKeyword(e.target.value.trim());
   };
+  const { data: productsData, isSuccess } = useGetProductsQuery();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (keyword !== "") {
-        console.log(keyword);
-        dispatch(searchItem(keyword));
-      } else {
-        dispatch(resetSearch());
+      if (keyword !== "" && isSuccess) {
+        console.log("a", { productsData, keyword });
+        dispatch(searchItem({ productsData, keyword }));
       }
     }, 1000);
     return () => {
       clearTimeout(timer);
     };
+  }, [keyword]);
+
+  useEffect(() => {
+    if (keyword === "") {
+      dispatch(resetSearch());
+    }
   }, [keyword]);
 
   return (

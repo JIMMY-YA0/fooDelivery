@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toContainHTML } from "@testing-library/jest-dom/dist/matchers";
-import { act } from "react-dom/test-utils";
+// import { toContainHTML } from "@testing-library/jest-dom/dist/matchers";
+// import { act } from "react-dom/test-utils";
 // import { MEALS_DATA } from "../data";
 const cartSlice = createSlice({
   name: "cart",
@@ -16,21 +16,25 @@ const cartSlice = createSlice({
       if (existItem) {
         state.items = state.items.map((item) =>
           item.id === action.payload.id
-            ? ((state.totalPrice += item.price), { ...item, amount: item.amount + 1 })
+            ? ((state.totalPrice += item.attributes.price), { ...item, amount: item.amount + 1 })
             : item
         );
         state.totalAmount += 1;
       } else {
         const addItem = { ...action.payload, amount: 1 };
+
         state.items = state.items.concat(addItem);
+
         state.totalAmount += 1;
-        state.totalPrice += addItem.price;
+        console.log("addItem", addItem);
+        state.totalPrice += addItem.attributes.price;
+        console.log("cartItems", state.items);
       }
     },
     subtract(state, action) {
       state.items = state.items.map((item) => {
         if (item.id === action.payload.id) {
-          state.totalPrice -= item.price;
+          state.totalPrice -= item.attributes.price;
           return { ...item, amount: item.amount - 1 };
         }
         return item;
