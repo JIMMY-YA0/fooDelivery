@@ -17,22 +17,23 @@ const FilterMeals = (props) => {
   const { data: productsData, isSuccess } = useGetProductsQuery();
 
   useEffect(() => {
+    console.log("triggle1");
     const timer = setTimeout(() => {
       if (keyword !== "" && isSuccess) {
-        console.log("a", { productsData, keyword });
         dispatch(searchItem({ productsData, keyword }));
       }
     }, 1000);
     return () => {
       clearTimeout(timer);
     };
-  }, [keyword]);
+  }, [keyword, dispatch, isSuccess]);
 
   useEffect(() => {
+    console.log("triggle2");
     if (keyword === "") {
       dispatch(resetSearch());
     }
-  }, [keyword]);
+  }, [keyword, dispatch]);
 
   return (
     <div className={classes.FilterMeals}>
