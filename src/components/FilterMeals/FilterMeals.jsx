@@ -26,7 +26,7 @@ const FilterMeals = (props) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [keyword, dispatch, isSuccess]);
+  }, [keyword, dispatch, isSuccess, productsData]);
 
   useEffect(() => {
     console.log("triggle2");
