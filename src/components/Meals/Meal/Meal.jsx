@@ -5,7 +5,6 @@ const Meal = (props) => {
   return (
     <div className={classes.Meal}>
       <div className={classes.ImgBox}>
-        {/* {console.log("url->", props.meal.img.data.attributes.url)} */}
         <img
           src={props.meal.attributes.img.data.attributes.url}
           alt={props.meal.attributes.title}
