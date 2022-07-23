@@ -17,7 +17,6 @@ const FilterMeals = (props) => {
   const { data: productsData, isSuccess } = useGetProductsQuery();
 
   useEffect(() => {
-    console.log("triggle1");
     const timer = setTimeout(() => {
       if (keyword !== "" && isSuccess) {
         dispatch(searchItem({ productsData, keyword }));
@@ -29,7 +28,6 @@ const FilterMeals = (props) => {
   }, [keyword, dispatch, isSuccess, productsData]);
 
   useEffect(() => {
-    console.log("triggle2");
     if (keyword === "") {
       dispatch(resetSearch());
     }
@@ -44,7 +42,7 @@ const FilterMeals = (props) => {
           onChange={inputChangeHandler}
           value={keyword}
           type="text"
-          placeholder="Enter keyword to search "
+          placeholder="Enter your search term"
         />
       </div>
     </div>

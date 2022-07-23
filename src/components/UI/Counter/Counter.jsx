@@ -26,7 +26,6 @@ const Counter = (props) => {
       <button
         className={classes.Add}
         onClick={() => {
-          console.log(props.meal);
           dispatch(increase(props.meal));
         }}
       >

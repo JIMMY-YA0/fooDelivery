@@ -3,7 +3,6 @@ import Counter from "../../UI/Counter/Counter";
 import classes from "./CheckoutItem.module.css";
 
 const CheckoutItem = (props) => {
-  console.log("checkoutProps", props);
   return (
     <div className={classes.CheckoutItem}>
       <div className={classes.MealImg}>

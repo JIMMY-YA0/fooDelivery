@@ -23,13 +23,9 @@ const cartSlice = createSlice({
         state.totalAmount += 1;
       } else {
         const addItem = { ...action.payload, quantity: 1 };
-
         state.items = state.items.concat(addItem);
-
         state.totalAmount += 1;
-        console.log("addItem", addItem);
         state.totalPrice += addItem.attributes.price;
-        console.log("cartItems", state.items);
       }
     },
     subtract(state, action) {
