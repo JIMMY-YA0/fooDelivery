@@ -22,7 +22,7 @@ const Checkout = (props) => {
         </header>
         <div className={classes.Meals}>
           {cart.items.map((item) => {
-            if (item.amount > 0) {
+            if (item.quantity > 0) {
               return <CheckoutItem key={item.id} meal={item} />;
             }
             return null;

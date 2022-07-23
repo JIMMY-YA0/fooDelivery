@@ -9,7 +9,7 @@ const Counter = (props) => {
   const dispatch = useDispatch();
   return (
     <div className={classes.Counter}>
-      {props.meal.amount && props.meal.amount !== 0 ? (
+      {props.meal.quantity && props.meal.quantity !== 0 ? (
         <>
           <button
             className={classes.Sub}
@@ -19,7 +19,7 @@ const Counter = (props) => {
           >
             <FontAwesomeIcon icon={faMinus} />
           </button>
-          <span className={classes.Count}>{props.meal.amount}</span>{" "}
+          <span className={classes.Count}>{props.meal.quantity}</span>{" "}
         </>
       ) : null}
 

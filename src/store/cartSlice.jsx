@@ -16,12 +16,13 @@ const cartSlice = createSlice({
       if (existItem) {
         state.items = state.items.map((item) =>
           item.id === action.payload.id
-            ? ((state.totalPrice += item.attributes.price), { ...item, amount: item.amount + 1 })
+            ? ((state.totalPrice += item.attributes.price),
+              { ...item, quantity: item.quantity + 1 })
             : item
         );
         state.totalAmount += 1;
       } else {
-        const addItem = { ...action.payload, amount: 1 };
+        const addItem = { ...action.payload, quantity: 1 };
 
         state.items = state.items.concat(addItem);
 
@@ -35,14 +36,14 @@ const cartSlice = createSlice({
       state.items = state.items.map((item) => {
         if (item.id === action.payload.id) {
           state.totalPrice -= item.attributes.price;
-          return { ...item, amount: item.amount - 1 };
+          return { ...item, quantity: item.quantity - 1 };
         }
         return item;
       });
       state.totalAmount -= 1;
     },
     clearCart(state, action) {
-      state.items.forEach((item) => (item.amount = 0));
+      state.items.forEach((item) => (item.quantity = 0));
       state.totalPrice = 0;
       state.totalAmount = 0;
     },

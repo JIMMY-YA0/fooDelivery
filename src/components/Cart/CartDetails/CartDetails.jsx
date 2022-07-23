@@ -47,7 +47,7 @@ const CartDetails = () => {
         </header>
         <div className={classes.MealList}>
           {cart.items.map((item) => {
-            if (item.amount > 0) {
+            if (item.quantity > 0) {
               return <Meal noDesc key={item.id} meal={item} />;
             }
             return null;
